@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chhua.safetynotification.MainActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="100px"
+        android:background="@color/red"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:id="@+id/constraintLayout2">
+
+        <TextClock
+            android:id="@+id/textClock"
+            android:textColor="@color/white"
+            android:textSize="50px"
+            android:layout_width="123dp"
+            android:layout_height="90px"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.017" />
+
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="55dp"
+            android:layout_height="80px"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10px"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.017"
+            app:srcCompat="@drawable/menu_42" />
+
+        <ImageButton
+            android:id="@+id/settingButton"
+            android:layout_width="55dp"
+            android:layout_height="80px"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10px"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.014"
+            app:srcCompat="@drawable/setting_42"/>
+
+        <ImageButton
+            android:id="@+id/logoutButton"
+            android:layout_width="54dp"
+            android:layout_height="80px"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="20px"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10px"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:onClick="logoutClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/menuButton"
+            app:layout_constraintRight_toLeftOf="@+id/settingButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.014"
+            app:srcCompat="@drawable/logout_42" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/bottomline_red"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
+        android:layout_marginTop="60dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/textClock"-->
+
+            <Button
+                android:id="@+id/alarmButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:onClick="alarmClick"
+                android:text="警示"
+                android:textSize="25dp"
+                tools:layout_editor_absoluteX="80dp"
+                tools:layout_editor_absoluteY="61dp" />
+
+            <Button
+                android:id="@+id/transportButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:onClick="transportClick"
+                android:text="接送"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/recordButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:onClick="recordClick"
+                android:text="記錄"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/positionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:onClick="positionClick"
+                android:text="位置"
+                android:textSize="25dp" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <!--<android.support.constraint.ConstraintLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:background="@color/red"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent">-->
+
+    <!--</android.support.constraint.ConstraintLayout>-->
+
+    <!--android:background="@android:color/transparent"-->
+
+
+</android.support.constraint.ConstraintLayout>
