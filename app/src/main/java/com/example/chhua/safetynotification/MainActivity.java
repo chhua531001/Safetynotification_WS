@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     byte[] ivByte = new byte[0];
     byte[] keyByte = new byte[0];
 
+    
+
     Context mContext = this;
 
     de.hdodenhof.circleimageview.CircleImageView logo;
