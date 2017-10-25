@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
     byte[] ivByte = new byte[0];
     byte[] keyByte = new byte[0];
 
-    
-
     Context mContext = this;
 
     de.hdodenhof.circleimageview.CircleImageView logo;
@@ -98,7 +96,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //隱藏ActionBar(App最上面的工具欄)
+        android.support.v7.app.ActionBar m_myActionBar = getSupportActionBar();
+        m_myActionBar.hide();
+
+        //把螢幕固定為
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         Pair<Integer, Integer> tempPixels = tools.getDisplayParameter(getApplicationContext());
+
+//        int wPixels = tempPixels.first;
         int wPixels;
         if(tempPixels.first <= tempPixels.second) {
             wPixels = tempPixels.first;
@@ -169,16 +176,6 @@ public class MainActivity extends AppCompatActivity {
         params.width = temp;
         loginButton.setLayoutParams(params);
         loginButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-
-
-
-
-        //隱藏ActionBar(App最上面的工具欄)
-        android.support.v7.app.ActionBar m_myActionBar = getSupportActionBar();
-        m_myActionBar.hide();
-
-        //把螢幕固定為
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //使用SharedPreferences settings = getSharedPreferences("settingParameter", MODE_PRIVATE)去儲存程式一開始執行時需要的資料
         // MODE_PRIVATE = 0, MODE_WORLD_READABLE = 1,  MODE_WORLD_WRITEABLE = 2
