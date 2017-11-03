@@ -40,14 +40,14 @@
 
         <TextView
             android:id="@+id/logoText2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="0dp"
             android:text="安全通報系統"
             android:textColor="@color/red"
             android:textSize="60px"
             android:layout_weight="1"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:textStyle="bold|italic"/>
 
 
@@ -84,7 +84,7 @@
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:hint="帳號"
-                android:textSize="50px"
+                android:textSize="30px"
                 android:inputType="textPersonName"
                 android:backgroundTint="@color/red"
                 android:textColorHint="@color/red"
@@ -112,7 +112,7 @@
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:hint="密碼"
-                android:textSize="50px"
+                android:textSize="30px"
                 android:inputType="textPassword"
                 android:layout_weight="8"
                 android:backgroundTint="@color/red"
