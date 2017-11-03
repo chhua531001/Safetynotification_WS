@@ -23,8 +23,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextClock;
+import android.widget.TextView;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
@@ -62,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
     Context mContext = this;
 
-    de.hdodenhof.circleimageview.CircleImageView logo;
+//    de.hdodenhof.circleimageview.CircleImageView logo;
+    ImageView logo;
+    TextView logoText1, logoText2;
     android.view.ViewGroup.LayoutParams params;
     LinearLayout llParams;
 
@@ -94,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         //隱藏ActionBar(App最上面的工具欄)
         android.support.v7.app.ActionBar m_myActionBar = getSupportActionBar();
@@ -104,78 +108,54 @@ public class MainActivity extends AppCompatActivity {
 //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Pair<Integer, Integer> tempPixels = tools.getDisplayParameter(getApplicationContext());
-
-//        int wPixels = tempPixels.first;
-        int wPixels;
-        if(tempPixels.first <= tempPixels.second) {
-            wPixels = tempPixels.first;
-        }
-        else {
-            wPixels = tempPixels.second;
-        }
+        int wPixels = tempPixels.first;
+        int hPixels = tempPixels.second;
 //        int hPixels = tempPixels.second;
-        System.out.println("widthPixels : " + wPixels);
+        System.out.println("wwwidthPixels : " + wPixels);
 
-        logo = (de.hdodenhof.circleimageview.CircleImageView) findViewById(R.id.circleImageView3);
+        logo = (ImageView) findViewById(R.id.circleImageView3);
         params = logo.getLayoutParams();
-        params.width = wPixels/3;
-        params.height = wPixels/3;
+        params.width = (wPixels * 3) / 5;
+//        params.height = wPixels / 2;
         logo.setLayoutParams(params);
 
-        llParams = (LinearLayout) findViewById(R.id.linearLayout2);
-        params = llParams.getLayoutParams();
-        int temp = (wPixels * 7) /10;
-        params.width = temp;
-        params.height = (temp * 15) / 100;
-        llParams.setLayoutParams(params);
+        int textSizePixel = (hPixels * 5) / 100;
+        float textSizeDp = tools.convertPixelToDp(textSizePixel, mContext);
+        System.out.println("textSize : " + textSizeDp);
+        logoText1 = (TextView) findViewById(R.id.logoText1);
+        logoText1.setTextSize(textSizeDp);
+
+        logoText2 = (TextView) findViewById(R.id.logoText2);
+        logoText2.setTextSize(textSizeDp);
+
+        LinearLayout loginLL = (LinearLayout) findViewById(R.id.loginUser_ll);
+        params = loginLL.getLayoutParams();
+        int width = (wPixels * 7) / 10;
+        params.width = width;
+        loginLL.setLayoutParams(params);
 
         loginUser = (EditText) findViewById(R.id.loginUser);
-        params = loginUser.getLayoutParams();
-        params.width = temp - 30;
-        params.height = (temp * 15) / 100;
-        loginUser.setLayoutParams(params);
-        int textSize = (params.height *4) / 10;
-        loginUser.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-        Log.println(Log.DEBUG, targetID, "textSize height 1--> "+params.height);
-        Log.println(Log.DEBUG, targetID, "textSize --> "+textSize);
+        int textSize = (hPixels * 3) / 100;
+        textSizeDp = tools.convertPixelToDp(textSize, mContext);
+        loginUser.setTextSize(textSizeDp);
 
-        llParams = (LinearLayout) findViewById(R.id.linearLayout3);
-        params = llParams.getLayoutParams();
-        params.width = temp;
-        params.height = (params.width * 15) / 100;
-        llParams.setLayoutParams(params);
-//        //set Marign Parameter
-//        ViewGroup.MarginLayoutParams params1 = (ViewGroup.MarginLayoutParams) llParams.getLayoutParams();
-//        params1.width = 200; params1.leftMargin = 100; params1.topMargin = 200;
-//        params1.setMargins(100,100, 100, 100);
-//        params1.setMarginStart(100);
-//        params1.setMarginEnd(100);
+        loginLL = (LinearLayout) findViewById(R.id.loginPassword_ll);
+        params = loginLL.getLayoutParams();
+        params.width = width;
+        loginLL.setLayoutParams(params);
 
         loginPassword = (EditText) findViewById(R.id.loginPassword);
-        params = loginPassword.getLayoutParams();
-        params.height = (temp * 15) / 100;
-        params.width = temp - 30 - params.height;
-        loginPassword.setLayoutParams(params);
-        loginPassword.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-//        //set Marign Parameter
-//        params1 = (ViewGroup.MarginLayoutParams) loginPassword.getLayoutParams();
-//        params1.width = 200; params1.leftMargin = 100; params1.topMargin = 200;
-//        params1.setMargins(100,100, 100, 100);
-//        params1.setMarginStart(100);
-//        params1.setMarginEnd(100);
-
-        infoButton = (ImageButton) findViewById(R.id.infoButton);
-        params = infoButton.getLayoutParams();
-        params.height = (temp * 15) / 100;
-        params.width = params.height;
-        infoButton.setLayoutParams(params);
+//        params = loginPassword.getLayoutParams();
+//        params.width = width;
+//        loginPassword.setLayoutParams(params);
+        loginPassword.setTextSize(textSizeDp);
 
         loginButton = (Button) findViewById(R.id.loginButton);
         params = loginButton.getLayoutParams();
-        params.height = (temp * 15) / 100;
-        params.width = temp;
+        params.width = width;
         loginButton.setLayoutParams(params);
-        loginButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+
+        loginButton.setTextSize(textSizeDp);
 
         //使用SharedPreferences settings = getSharedPreferences("settingParameter", MODE_PRIVATE)去儲存程式一開始執行時需要的資料
         // MODE_PRIVATE = 0, MODE_WORLD_READABLE = 1,  MODE_WORLD_WRITEABLE = 2
