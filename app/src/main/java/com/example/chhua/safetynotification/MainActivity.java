@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         loginLL.setLayoutParams(params);
 
         loginUser = (EditText) findViewById(R.id.loginUser);
-        int textSize = (int) (hPixels * 2.8) / 100;
+        float textSize =  (hPixels * 2.8f) / 100;
         textSizeDp = tools.convertPixelToDp(textSize, mContext);
         loginUser.setTextSize(textSizeDp);
 

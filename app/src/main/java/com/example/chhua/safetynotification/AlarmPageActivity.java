@@ -200,7 +200,7 @@ public class AlarmPageActivity extends AppCompatActivity {
         topLL.setLayoutParams(params);
 
         //textSize必須用dp的數值來作為單位
-        float textSize = (float) (hPixels / 50);
+        float textSize = hPixels / 50f;
         Log.println(Log.DEBUG, targetID, "textSize_pixels --> "+textSize);
         float textSizeDP = tools.convertPixelToDp(textSize, mContext);
         Log.println(Log.DEBUG, targetID, "textSize_dps --> "+textSizeDP);
@@ -212,7 +212,7 @@ public class AlarmPageActivity extends AppCompatActivity {
         TextView settingText = (TextView) findViewById(R.id.settingText);
         settingText.setTextSize(textSizeDP);
 
-        textSize = (float) ((hPixels * 2.5) / 50);
+        textSize = (hPixels * 2.5f) / 50;
         Log.println(Log.DEBUG, targetID, "textSize_pixels --> "+textSize);
         textSizeDP = tools.convertPixelToDp(textSize, mContext);
         Log.println(Log.DEBUG, targetID, "textSize_dps --> "+textSizeDP);
