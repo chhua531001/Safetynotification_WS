@@ -12,6 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -156,6 +157,21 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setLayoutParams(params);
 
         loginButton.setTextSize(textSizeDp);
+
+        //設定Login畫面上下的兩塊紅色區域
+        android.view.ViewGroup.LayoutParams params;
+        //Layout的數值必須用Pixel來作為單位
+        ConstraintLayout topCL = (ConstraintLayout) findViewById(R.id.top_cl);
+        params = topCL.getLayoutParams();
+//        params.width = wPixels / 2;
+        params.height = hPixels / 10;
+        topCL.setLayoutParams(params);
+
+        ConstraintLayout bottomCL = (ConstraintLayout) findViewById(R.id.bottom_cl);
+        params = bottomCL.getLayoutParams();
+//        params.width = wPixels / 2;
+        params.height = hPixels / 10;
+        bottomCL.setLayoutParams(params);
 
         //使用SharedPreferences settings = getSharedPreferences("settingParameter", MODE_PRIVATE)去儲存程式一開始執行時需要的資料
         // MODE_PRIVATE = 0, MODE_WORLD_READABLE = 1,  MODE_WORLD_WRITEABLE = 2

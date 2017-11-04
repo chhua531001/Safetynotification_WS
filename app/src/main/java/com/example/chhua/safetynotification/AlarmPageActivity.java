@@ -20,18 +20,23 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextClock;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +70,10 @@ public class AlarmPageActivity extends AppCompatActivity {
     private int m_nTime = 0;
     private Handler mHandlerTime = new Handler();
     boolean timerStop = false;
+
+    Tools tools = new Tools();
+    Pair<Integer, Integer> tempPixels;
+    int hPixels;
 
 
     private WebSocketListenService.ServiceController mControl;
@@ -167,8 +176,59 @@ public class AlarmPageActivity extends AppCompatActivity {
 //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 //        wifi = (WifiManager)mContext.getSystemService(Context.WIFI_SERVICE);
 
-        alarmButton = (Button) findViewById(R.id.alarmButton);
-        alarmButton.setTextColor(mContext.getResources().getColor(R.color.red));
+
+        //設定上部選單的區域與字型大小
+        tempPixels = tools.getDisplayParameter(getApplicationContext());
+        hPixels = tempPixels.second;
+
+        android.view.ViewGroup.MarginLayoutParams mParams;
+        mWebView = (WebView) findViewById(R.id.webview);
+        mParams = (ViewGroup.MarginLayoutParams) mWebView.getLayoutParams();
+        mParams.setMargins(0, (int) hPixels / 10, 0, 0);
+
+        android.view.ViewGroup.LayoutParams params;
+        //Layout的數值必須用Pixel來作為單位
+        ConstraintLayout topCL = (ConstraintLayout) findViewById(R.id.top_cl);
+        params = topCL.getLayoutParams();
+//        params.width = wPixels / 2;
+        params.height = hPixels / 10;
+        topCL.setLayoutParams(params);
+
+        LinearLayout topLL = (LinearLayout) findViewById(R.id.top_ll);
+        params = topLL.getLayoutParams();
+        params.height = hPixels / 10;
+        topLL.setLayoutParams(params);
+
+        //textSize必須用dp的數值來作為單位
+        float textSize = (float) (hPixels / 50);
+        Log.println(Log.DEBUG, targetID, "textSize_pixels --> "+textSize);
+        float textSizeDP = tools.convertPixelToDp(textSize, mContext);
+        Log.println(Log.DEBUG, targetID, "textSize_dps --> "+textSizeDP);
+
+        TextView menuText = (TextView) findViewById(R.id.menuText);
+        menuText.setTextSize(textSizeDP);
+        TextView logoutText = (TextView) findViewById(R.id.logoutText);
+        logoutText.setTextSize(textSizeDP);
+        TextView settingText = (TextView) findViewById(R.id.settingText);
+        settingText.setTextSize(textSizeDP);
+
+        textSize = (float) ((hPixels * 4) / 50);
+        Log.println(Log.DEBUG, targetID, "textSize_pixels --> "+textSize);
+        textSizeDP = tools.convertPixelToDp(textSize, mContext);
+        Log.println(Log.DEBUG, targetID, "textSize_dps --> "+textSizeDP);
+
+        TextClock textClock = (TextClock) findViewById(R.id.textClock);
+        textClock.setTextSize(textSizeDP);
+
+
+
+
+//        alarmButton = (Button) findViewById(R.id.alarmButton);
+//        alarmButton.setTextColor(mContext.getResources().getColor(R.color.red));
+
+
+
+
 //        logoutButton = (ImageButton) findViewById(R.id.logoutButton);
 //        logoutButton.setVisibility(View.VISIBLE);
 //        clock = (TextClock) findViewById(R.id.textClock);
