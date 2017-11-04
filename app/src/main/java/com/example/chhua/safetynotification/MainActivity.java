@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 //        params.height = wPixels / 2;
         logo.setLayoutParams(params);
 
-        int textSizePixel = (hPixels * 5) / 100;
+        int textSizePixel = (hPixels * 4) / 100;
         float textSizeDp = tools.convertPixelToDp(textSizePixel, mContext);
         System.out.println("textSize : " + textSizeDp);
         logoText1 = (TextView) findViewById(R.id.logoText1);
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         loginLL.setLayoutParams(params);
 
         loginUser = (EditText) findViewById(R.id.loginUser);
-        int textSize = (hPixels * 3) / 100;
+        int textSize = (int) (hPixels * 2.8) / 100;
         textSizeDp = tools.convertPixelToDp(textSize, mContext);
         loginUser.setTextSize(textSizeDp);
 
@@ -172,6 +172,12 @@ public class MainActivity extends AppCompatActivity {
 //        params.width = wPixels / 2;
         params.height = hPixels / 10;
         bottomCL.setLayoutParams(params);
+
+        android.view.ViewGroup.MarginLayoutParams mParams;
+        LinearLayout lonin_ll = (LinearLayout) findViewById(R.id.login_ll);
+        mParams = (ViewGroup.MarginLayoutParams) lonin_ll.getLayoutParams();
+        mParams.setMargins(0, (int) hPixels / 10, 0, hPixels / 10);
+
 
         //使用SharedPreferences settings = getSharedPreferences("settingParameter", MODE_PRIVATE)去儲存程式一開始執行時需要的資料
         // MODE_PRIVATE = 0, MODE_WORLD_READABLE = 1,  MODE_WORLD_WRITEABLE = 2

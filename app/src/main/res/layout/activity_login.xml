@@ -5,6 +5,7 @@
     <include layout="@layout/top_activity_main" />
 
     <LinearLayout
+        android:id="@+id/login_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="10"

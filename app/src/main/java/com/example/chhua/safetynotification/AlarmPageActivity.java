@@ -212,7 +212,7 @@ public class AlarmPageActivity extends AppCompatActivity {
         TextView settingText = (TextView) findViewById(R.id.settingText);
         settingText.setTextSize(textSizeDP);
 
-        textSize = (float) ((hPixels * 4) / 50);
+        textSize = (float) ((hPixels * 2.5) / 50);
         Log.println(Log.DEBUG, targetID, "textSize_pixels --> "+textSize);
         textSizeDP = tools.convertPixelToDp(textSize, mContext);
         Log.println(Log.DEBUG, targetID, "textSize_dps --> "+textSizeDP);
