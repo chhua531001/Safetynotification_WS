@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         loginLL.setLayoutParams(params);
 
         loginUser = (EditText) findViewById(R.id.loginUser);
-        float textSize =  (hPixels * 2.8f) / 100;
+        float textSize =  (hPixels * 3.2f) / 100;
         textSizeDp = tools.convertPixelToDp(textSize, mContext);
         loginUser.setTextSize(textSizeDp);
 
@@ -164,19 +164,19 @@ public class MainActivity extends AppCompatActivity {
         ConstraintLayout topCL = (ConstraintLayout) findViewById(R.id.top_cl);
         params = topCL.getLayoutParams();
 //        params.width = wPixels / 2;
-        params.height = hPixels / 10;
+        params.height = hPixels / 15;
         topCL.setLayoutParams(params);
 
         ConstraintLayout bottomCL = (ConstraintLayout) findViewById(R.id.bottom_cl);
         params = bottomCL.getLayoutParams();
 //        params.width = wPixels / 2;
-        params.height = hPixels / 10;
+        params.height = hPixels / 15;
         bottomCL.setLayoutParams(params);
 
         android.view.ViewGroup.MarginLayoutParams mParams;
         LinearLayout lonin_ll = (LinearLayout) findViewById(R.id.login_ll);
         mParams = (ViewGroup.MarginLayoutParams) lonin_ll.getLayoutParams();
-        mParams.setMargins(0, (int) hPixels / 10, 0, hPixels / 10);
+        mParams.setMargins(0, (int) hPixels / 15, 0, hPixels / 15);
 
 
         //使用SharedPreferences settings = getSharedPreferences("settingParameter", MODE_PRIVATE)去儲存程式一開始執行時需要的資料
