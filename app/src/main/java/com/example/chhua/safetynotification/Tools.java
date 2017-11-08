@@ -205,23 +205,24 @@ public class Tools {
                     switch (key) {
                         case "priority":
                             priority = obj.getString(key);
-                            Log.d("priority : ", priority);;
+                            Log.d("priority : ", priority);
                             break;
                         case "type":
                             type = obj.getString(key);
-                            Log.d("type : ", type);;
+                            Log.d("type : ", type);
                             break;
                         case "subject":
                             subject = obj.getString(key);
-                            Log.d("subject : ", subject);;
+                            Log.d("subject : ", subject);
                             break;
                         case "detail":
                             detail = obj.getString(key);
-                            Log.d("detail : ", detail);;
+                            Log.d("detail : ", detail);
                             break;
+                        case "time_stamp":
                         case "timestamp":
                             timestamp = obj.getLong(key);
-                            Log.d("timestamp : ", Long.toString(timestamp));;
+                            Log.d("timestamp : ", Long.toString(timestamp));
                             break;
                     }
                 }
