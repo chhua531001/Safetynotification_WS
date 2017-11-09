@@ -340,6 +340,7 @@ public class AlarmPageActivity extends AppCompatActivity {
 //        timer.cancel();
 //        timer = null;
 //        Log.println(Log.DEBUG, targetID, "System ontimer status ->"+timer);
+        //在此呼叫WebSocketListenService, 把參數付給它, 會反應在WebSocketListenService->onStartCommand中
         broadcastAction = false;
         serviceIntent.putExtra("broadcast", broadcastAction);
         startService(serviceIntent);
@@ -411,7 +412,7 @@ public class AlarmPageActivity extends AppCompatActivity {
 //        });
 
         mWebView.getSettings().setJavaScriptEnabled(true);
-
+        //在此呼叫WebSocketListenService, 把參數付給它, 會反應在WebSocketListenService->onStartCommand中
         serviceIntent.putExtra("broadcast", broadcastAction);
         startService(serviceIntent);
 

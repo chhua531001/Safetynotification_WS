@@ -70,6 +70,7 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
         fws = AsyncHttpClient.getDefaultInstance().websocket(WebSocketURL,null,this);
     }
 
+    //AlarmPageActivity利用startService的方式來另叫onStartCommand
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
