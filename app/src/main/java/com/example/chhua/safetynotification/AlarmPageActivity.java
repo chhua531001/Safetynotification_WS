@@ -328,7 +328,6 @@ public class AlarmPageActivity extends AppCompatActivity {
         super.onStart();
         Log.println(Log.INFO, targetID, "System onStart");
         Intent it = new Intent(this,WebSocketListenService.class);
-        it.putExtra("broadcast", broadcastAction);
         bindService(it, mServiceConnection, BIND_AUTO_CREATE);
     }
 
@@ -405,6 +404,10 @@ public class AlarmPageActivity extends AppCompatActivity {
 //        });
 
         mWebView.getSettings().setJavaScriptEnabled(true);
+
+        Intent intent = new Intent(this, WebSocketListenService.class);
+        intent.putExtra("broadcast", broadcastAction);
+        startService(intent);
 
 
 

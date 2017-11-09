@@ -35,7 +35,7 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
     Tools tools = new Tools();
     ArrayList<Transaction> warningMessage = new ArrayList<>();
 
-    boolean broadcastAction;
+    boolean broadcastAction = false;
 
     public class ServiceController extends Binder {
         private ArrayList<String> messages = new ArrayList<String>();
@@ -75,7 +75,7 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
         Log.println(Log.DEBUG, targetID, "System onStartCommand --> ");
 
         broadcastAction = intent.getBooleanExtra("broadcast",
-                true);
+                broadcastAction);
         Log.println(Log.DEBUG, targetID, "System onStartCommand --> "+broadcastAction);
         return START_STICKY;
     }
@@ -84,9 +84,9 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
     public IBinder onBind(Intent intent)
     {
         Log.println(Log.DEBUG, targetID, "System onBind --> ");
-        broadcastAction = intent.getBooleanExtra("broadcast",
-                false);
-        Log.println(Log.DEBUG, targetID, "System onBind --> "+broadcastAction);
+//        broadcastAction = intent.getBooleanExtra("broadcast",
+//                false);
+//        Log.println(Log.DEBUG, targetID, "System onBind --> "+broadcastAction);
         return ms;
     }
 
