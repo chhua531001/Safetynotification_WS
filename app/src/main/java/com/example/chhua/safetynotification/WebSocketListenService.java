@@ -74,8 +74,7 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
 
         Log.println(Log.DEBUG, targetID, "System onStartCommand --> ");
 
-        broadcastAction = intent.getBooleanExtra("broadcast",
-                broadcastAction);
+        broadcastAction = intent.getBooleanExtra("broadcast", broadcastAction);
         Log.println(Log.DEBUG, targetID, "System onStartCommand --> "+broadcastAction);
         return START_STICKY;
     }

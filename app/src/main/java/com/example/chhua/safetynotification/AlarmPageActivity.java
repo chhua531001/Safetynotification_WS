@@ -75,6 +75,8 @@ public class AlarmPageActivity extends AppCompatActivity {
     Pair<Integer, Integer> tempPixels;
     int hPixels;
 
+    Intent serviceIntent;
+
 
     private WebSocketListenService.ServiceController mControl;
     private ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -327,8 +329,8 @@ public class AlarmPageActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.println(Log.INFO, targetID, "System onStart");
-        Intent it = new Intent(this,WebSocketListenService.class);
-        bindService(it, mServiceConnection, BIND_AUTO_CREATE);
+        serviceIntent = new Intent(this,WebSocketListenService.class);
+        bindService(serviceIntent, mServiceConnection, BIND_AUTO_CREATE);
     }
 
     @Override
@@ -338,6 +340,11 @@ public class AlarmPageActivity extends AppCompatActivity {
 //        timer.cancel();
 //        timer = null;
 //        Log.println(Log.DEBUG, targetID, "System ontimer status ->"+timer);
+        broadcastAction = false;
+        serviceIntent.putExtra("broadcast", broadcastAction);
+        startService(serviceIntent);
+
+
         timerStop = true;
         unbindService(mServiceConnection);
         super.onStop();
@@ -405,14 +412,8 @@ public class AlarmPageActivity extends AppCompatActivity {
 
         mWebView.getSettings().setJavaScriptEnabled(true);
 
-        Intent intent = new Intent(this, WebSocketListenService.class);
-        intent.putExtra("broadcast", broadcastAction);
-        startService(intent);
-
-
-
-
-
+        serviceIntent.putExtra("broadcast", broadcastAction);
+        startService(serviceIntent);
 
 //        if(broadcastAction) {
 //            mWebView.getSettings().setJavaScriptEnabled(true);
@@ -531,12 +532,6 @@ public class AlarmPageActivity extends AppCompatActivity {
     public void logoutClick(View v) {
         Log.println(Log.INFO, targetID, "logout Button Click");
         onBackPressed();
-
-        Intent intent = new Intent(this, WebSocketListenService.class);
-        broadcastAction = false;
-        intent.putExtra("broadcast", broadcastAction);
-        startService(intent);
-
 //        mWebView.getSettings().setJavaScriptEnabled(false);
 ////        mWebView.removeJavascriptInterface("sdbisAppHandler");
 //        Intent i = new Intent(this, MainActivity.class);
