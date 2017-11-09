@@ -53,6 +53,7 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
     public void onCreate() {
         super.onCreate();
         //nb = new NotificationCompat.Builder(this,"demoNotification");
+        Log.println(Log.INFO, targetID, "System onCreate --> ");
 
         Intent it = new Intent(this,AlarmPageActivity.class);
         it.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP );
@@ -72,7 +73,7 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        Log.println(Log.DEBUG, targetID, "System onStartCommand --> ");
+        Log.println(Log.INFO, targetID, "System onStartCommand --> ");
 
         broadcastAction = intent.getBooleanExtra("broadcast", broadcastAction);
         return START_STICKY;
@@ -81,7 +82,7 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
     @Override
     public IBinder onBind(Intent intent)
     {
-        Log.println(Log.DEBUG, targetID, "System onBind --> ");
+        Log.println(Log.INFO, targetID, "System onBind --> ");
 //        broadcastAction = intent.getBooleanExtra("broadcast",
 //                false);
 //        Log.println(Log.DEBUG, targetID, "System onBind --> "+broadcastAction);
