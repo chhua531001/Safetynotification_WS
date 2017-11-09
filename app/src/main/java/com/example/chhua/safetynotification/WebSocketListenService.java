@@ -35,6 +35,8 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
     Tools tools = new Tools();
     ArrayList<Transaction> warningMessage = new ArrayList<>();
 
+    boolean broadcastAction;
+
     public class ServiceController extends Binder {
         private ArrayList<String> messages = new ArrayList<String>();
         protected void save(String msg) { messages.add(msg); }
@@ -68,8 +70,23 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        Log.println(Log.DEBUG, targetID, "System onStartCommand --> ");
+
+        broadcastAction = intent.getBooleanExtra("broadcast",
+                true);
+        Log.println(Log.DEBUG, targetID, "System onStartCommand --> "+broadcastAction);
+        return START_STICKY;
+    }
+
+    @Override
     public IBinder onBind(Intent intent)
     {
+        Log.println(Log.DEBUG, targetID, "System onBind --> ");
+        broadcastAction = intent.getBooleanExtra("broadcast",
+                false);
+        Log.println(Log.DEBUG, targetID, "System onBind --> "+broadcastAction);
         return ms;
     }
 
@@ -96,18 +113,20 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
             return;
         }
 
-        if(warningMessage.get(0).type.equals("SW")) {
-            nb.setWhen(System.currentTimeMillis())
-                    .setContentTitle("測試用通知")
-                    .setContentText(warningMessage.get(0).detail);
+        if(broadcastAction) {
+            if (warningMessage.get(0).type.equals("SW")) {
+                nb.setWhen(System.currentTimeMillis())
+                        .setContentTitle("測試用通知")
+                        .setContentText(warningMessage.get(0).detail);
 
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            builder.setSmallIcon(R.drawable.logo);
-                nb.setColor(getResources().getColor(R.color.red));
-            }
+                    nb.setColor(getResources().getColor(R.color.red));
+                }
 
-            NotificationManager nm = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-            nm.notify(0, nb.build());
+                NotificationManager nm = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+                nm.notify(0, nb.build());
+            }
         }
         ms.save(s);
     }

@@ -328,6 +328,7 @@ public class AlarmPageActivity extends AppCompatActivity {
         super.onStart();
         Log.println(Log.INFO, targetID, "System onStart");
         Intent it = new Intent(this,WebSocketListenService.class);
+        it.putExtra("broadcast", broadcastAction);
         bindService(it, mServiceConnection, BIND_AUTO_CREATE);
     }
 
@@ -527,6 +528,12 @@ public class AlarmPageActivity extends AppCompatActivity {
     public void logoutClick(View v) {
         Log.println(Log.INFO, targetID, "logout Button Click");
         onBackPressed();
+
+        Intent intent = new Intent(this, WebSocketListenService.class);
+        broadcastAction = false;
+        intent.putExtra("broadcast", broadcastAction);
+        startService(intent);
+
 //        mWebView.getSettings().setJavaScriptEnabled(false);
 ////        mWebView.removeJavascriptInterface("sdbisAppHandler");
 //        Intent i = new Intent(this, MainActivity.class);
