@@ -75,7 +75,6 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
         Log.println(Log.DEBUG, targetID, "System onStartCommand --> ");
 
         broadcastAction = intent.getBooleanExtra("broadcast", broadcastAction);
-        Log.println(Log.DEBUG, targetID, "System onStartCommand --> "+broadcastAction);
         return START_STICKY;
     }
 
@@ -103,6 +102,7 @@ public class WebSocketListenService extends Service implements AsyncHttpClient.W
     public void onStringAvailable(String s) {
 
         Log.println(Log.DEBUG, targetID, "JSON String --> "+s);
+        Log.println(Log.DEBUG, targetID, "JSON String broadcastAction --> "+broadcastAction);
 
         try {
             JSONObject obj = new JSONObject(s);
